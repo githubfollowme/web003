@@ -1,5 +1,5 @@
 <?php include_once "../base.php";
-//dd($_POST);
+dd($_POST);
 if(isset($_FILES['trailer']['tmp_name'])){
     $_POST['trailer']=$_FILES['trailer']['name'];
     move_uploaded_file($_FILES['trailer']['tmp_name'],"../img/".$_POST['trailer']);
