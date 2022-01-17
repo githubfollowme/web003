@@ -3,7 +3,7 @@ date_default_timezone_set("Asia/Taipei");
 session_start();
 //$ls=[1=>'普遍級',2=>"保護級",3=>"輔導級",4=>"限制級"];
 class DB{
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web03";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web003";
     protected $user="root";
     protected $pw='';
     protected $pdo;
