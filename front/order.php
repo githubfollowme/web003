@@ -1,6 +1,23 @@
 <h3 class='ct'>線上訂票</h3>
 <style>
-    #order{
+    table tr:nth-child(odd) {
+        background-color: #ccc;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #ddd;
+    }
+
+    table td:nth-child(1) {
+        margin: 0 auto;
+        padding: 10px;
+        width: 60px;
+    }
+
+    table td select{
+        width: 98%;
+    }
+    /* #order{
         width:50%;
         margin:auto;
     }
@@ -18,10 +35,30 @@
     }
     .sec select{
         width:100%;
-    }
-
+    } */
 </style>
-<div id="order">
+<table style="width:400px;margin:auto">
+    <tr>
+        <td>電影:</td>
+        <td>
+            <select name="movie" id="movie"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>日期:</td>
+        <td>
+            <select name="date" id="date"></select>
+        </td>
+    </tr>
+    <tr>
+        <td>場次:</td>
+        <td>
+            <select name="session" id="session"></select>
+        </td>
+    </tr>
+</table>
+
+<!-- <div id="order">
 <div class="row">
     <div class="first">電影：</div>
     <div class="sec"><select name="movie" id="movie"></select></div>
@@ -41,57 +78,71 @@
     </div>
     
 </div>
-</div>
+</div> -->
 
 <div id="booking" style="display:none"></div>
 <script>
-let id=(new URL(location)).searchParams.get('id');
-getMovies(id)
-
-$("#movie").on("change",()=>{getDays()})
-$("#date").on("change",()=>{getSessions()})
-
-
-
-function booking(){
-    $("#order,#booking").toggle()
-
-    let order={id:$("#movie").val(),
-               date:$("#date").val(),
-               session:$("#session").val()}
-    $.get("api/booking.php",order,(booking)=>{
-        $("#booking").html(booking)
-    })
-}
-
-function reset(){
+    let id = (new URL(location)).searchParams.get('id');
     getMovies(id)
-}
-function prev(){
-    $("#order,#booking").toggle()
-    $("#booking").html("");
-}
 
-function getMovies(id){
-    $.get("api/get_movies.php",{id},(movies)=>{
-        $("#movie").html(movies)
+    $("#movie").on("change", () => {
         getDays()
     })
-}
-
-function getDays(){
-    let id=$("#movie").val();
-    $.get("api/get_days.php",{id},(days)=>{
-        $("#date").html(days)
-        getSessions();
+    $("#date").on("change", () => {
+        getSessions()
     })
-}
 
-function getSessions(){
-    let id=$("#movie").val();
-    let date=$("#date").val();
-    $.get("api/get_sessions.php",{id,date},(sessions)=>{
-        $("#session").html(sessions)
-    })
-}
+
+
+    function booking() {
+        $("#order,#booking").toggle()
+
+        let order = {
+            id: $("#movie").val(),
+            date: $("#date").val(),
+            session: $("#session").val()
+        }
+        $.get("api/booking.php", order, (booking) => {
+            $("#booking").html(booking)
+        })
+    }
+
+    function reset() {
+        getMovies(id)
+    }
+
+    function prev() {
+        $("#order,#booking").toggle()
+        $("#booking").html("");
+    }
+
+    function getMovies(id) {
+        $.get("api/get_movies.php", {
+            id
+        }, (movies) => {
+            $("#movie").html(movies)
+            getDays()
+        })
+    }
+
+    function getDays() {
+        let id = $("#movie").val();
+        $.get("api/get_days.php", {
+            id
+        }, (days) => {
+            $("#date").html(days)
+            getSessions();
+        })
+    }
+
+    function getSessions() {
+        let id = $("#movie").val();
+        let date = $("#date").val();
+        $.get("api/get_sessions.php", {
+            id,
+            date
+        }, (sessions) => {
+            $("#session").html(sessions)
+        })
+    }
 </script>
