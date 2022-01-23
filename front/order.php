@@ -1,23 +1,8 @@
+<!-- 訂單功能畫面與電影畫面載入 -->
 <h3 class='ct'>線上訂票</h3>
 <style>
-    table tr:nth-child(odd) {
-        background-color: #ccc;
-    }
 
-    table tr:nth-child(even) {
-        background-color: #ddd;
-    }
-
-    table td:nth-child(1) {
-        margin: 0 auto;
-        padding: 10px;
-        width: 60px;
-    }
-
-    table td select{
-        width: 98%;
-    }
-    /* #order{
+    #order{
         width:50%;
         margin:auto;
     }
@@ -35,30 +20,10 @@
     }
     .sec select{
         width:100%;
-    } */
+    }
 </style>
-<table style="width:400px;margin:auto">
-    <tr>
-        <td>電影:</td>
-        <td>
-            <select name="movie" id="movie"></select>
-        </td>
-    </tr>
-    <tr>
-        <td>日期:</td>
-        <td>
-            <select name="date" id="date"></select>
-        </td>
-    </tr>
-    <tr>
-        <td>場次:</td>
-        <td>
-            <select name="session" id="session"></select>
-        </td>
-    </tr>
-</table>
 
-<!-- <div id="order">
+<div id="order">
 <div class="row">
     <div class="first">電影：</div>
     <div class="sec"><select name="movie" id="movie"></select></div>
@@ -78,7 +43,10 @@
     </div>
     
 </div>
-</div> -->
+</div>
+
+
+
 
 <div id="booking" style="display:none"></div>
 <script>
